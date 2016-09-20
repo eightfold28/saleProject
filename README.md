@@ -118,20 +118,18 @@ Untuk meringankan beban tugas ini, ada berberapa keyword yang bisa anda cari unt
 Jika ada pertanyaan silakan tanyakan lewat milis.
 
 ### Pembagian Tugas
+*Disarankan semua anggota kelompok mengerjakan tampilan dan fungsionalitasnya. Bukan hanya tampilan atau fungsionalitasnya saja*
+
 **Tampilan**
-| No| Halaman       | Pembuat            |
-|:-:|:-------------:| :------------------:|
-| 1 | Login         | 13513xxx, 13513xxx |
-| 2 | Register      | 13513xxx           |
-| 3 | lanjutkan...  | ...                |
+1. Login : 135130xx, 135130xx
+2. Register : 135130xx
+3. Lanjutkan ...
 
 **Fungsionalitas**
-| No| Fungsionalitas      | Pembuat            |
-| - |:-------------------:|:------------------:|
-| 1 | Login               | 13513xxx, 13513xxx |
-| 2 | Register            | 13513xxx           |
-| 3 | Post barang         | 13513xxx           |
-| 4 | lanjutkan...        | ...                |
+1. Login : 135130xx, 135130xx
+2. Register : 135130xx
+3. Fungsionalitas : 135130xx,135130xx
+4. Lanjutkan...
 
 ## About
 
