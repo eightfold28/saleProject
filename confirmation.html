@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+	<title>SaleProject - Confirmation Purchase</title>
+	
+	<link rel="stylesheet" type="text/css" href="SaleProjectStyle.css">
+</head>
+
+<body>
+	<div class="title">
+		<br>
+		Sale<span style="color: #4887E4">Project</span> <br>
+	</div>
+		
+	<div class="user_greet">
+		Hi, user! <br>
+		<a href="">logout</a> <br>
+		<br>
+	</div>
+
+	<div class="navigation_bar">
+		<ul>
+			<li><a href="catalog.html">Catalog</a></li>
+			<li><a href="">Your Product</a></li>
+			<li><a href="">Add Product</a></li>
+			<li><a href="">Sales</a></li>
+			<li><a href="">Purchases</a></li>
+		</ul>
+	</div>
+
+	<div class="submenu_header">
+		<br>
+		Please confirm your purchase
+		<hr>
+	</div>
+
+	<div class="confirmation_purchase">
+		Product : <br>
+		Price 	: <br>
+		Quantity : <input type="text" name="qty" placeholder="1" style="width: 30px;"> pcs <br>
+		Total Price : <br>
+		Delivery to : <br>
+		<br>
+	</div>
+	
+	<div class="confirmation_purchase_form">
+		<small>Consignee</small> <br>
+		<input type="text" name="consignee"> <br> <br>
+		<small>Full Address</small> <br>
+		<!--input type="text" name="full_address" style="height: 70px; padding: 0px 10px;"> <br> <br-->
+		<textarea name="full_address" cols="105" rows="2" style="resize: none; font-family: Montserrat"></textarea> <br> <br>
+		<small>Postal Code</small> <br>
+		<input type="text" name="postal_code"> <br> <br>
+		<small>Phone Number</small> <br>
+		<input type="text" name="phone_number"> <br> <br>
+		<small>12 Digits Credit Card Number</small> <br>
+		<input type="text" name="credit_card"> <br> <br>
+		<small>3 Digits Card Verification Value</small> <br>
+		<input type="text" name="card_verification"> <br> <br> <br>
+
+		<input type="submit" name="cancel" value="CANCEL">
+		<input type="submit" name="confirm_purchse" value="CONFIRM" style="margin-right: 30px;"> <br> <br>
+	</div>
+
+</body>
+
+</html>
