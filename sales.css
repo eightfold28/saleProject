@@ -1,0 +1,74 @@
+.title {
+	text-align: center;
+	color: #880C17;
+	font-size: 30px;
+}
+
+.user_greet {
+	text-align: right;
+	margin-right: 15%;
+}
+
+.user_greet a {
+	text-decoration: none;
+	color: #880C17;
+}
+
+.navigation_bar ul {
+	list-style-type: none;
+	display: table;
+	table-layout: fixed;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: white;
+	width: 70%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+.navigation_bar li {
+	display: table-cell;
+	text-align: center;
+	border: solid 2px;
+}
+
+.navigation_bar li a {
+	display: block;
+	color: black;
+	padding: 6px;
+	text-decoration: none;
+}
+
+.navigation_bar .active {
+	background-color: #4887E4;
+	color: white;
+}
+
+.sales_history img {
+	width: 110px;
+	height: 110px;
+	float: left;
+	margin-right: 25px;
+	border: 1px solid gray;
+}
+
+span.itemname {
+	float: left;
+	font-weight: bold;
+	width: 40%;
+}
+
+span.boldfont{
+	font-weight: bold;
+}
+
+span.order-detail {
+	float: right;
+	margin-right: 60px;
+	width: 40%;
+	font-size: 13px;
+}
+
+
+
