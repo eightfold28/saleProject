@@ -1,0 +1,57 @@
+<style>
+body {
+	background-color: white;
+    margin-left: 100px;
+    margin-right: 100px;
+    letter-spacing: 1px;
+}
+
+h1 {
+	color: darkred;
+	text-align: center;
+    font-size: 35px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+h1 .projectcolor {
+	color: deepskyblue;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+h2 {
+	color: black;
+	text-align: left;
+	font-size: 30 px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.horizontalline {
+	border-bottom: thick solid #000000;
+}
+
+p {
+	font-family: arial;
+	font-size: 20 px;
+}
+
+textarea {
+    resize: none;
+}
+
+input[type=submit] {
+                font-family: arial;
+                padding: 5px 25px;
+                margin-right: 5px;
+                background: #5E8CC3;
+                color: white;
+                cursor: pointer;
+                border-style: solid;
+                border-color: #5E8CC3;
+                text-align: right;
+            }
+</style>
