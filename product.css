@@ -1,0 +1,97 @@
+h1 {
+	font-family: "Lucida Sans Unicode";
+	font-size: 35px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+h2 {
+	font-family: "Lucida Sans Unicode";
+	font-size: 20px;
+}
+
+body {
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+	margin-left: 100px;
+	margin-right: 100px;
+	letter-spacing: 1px;
+}
+
+p {
+	margin-top: 1px;
+	margin-bottom: 0px;
+	font-size: 20px;
+}
+
+textarea {
+	resize: none;
+}
+
+input[type=submit] {
+	padding: 5px 25px;
+	margin-right: 5px;
+	background: #5E8CC3;
+	color: white;
+	cursor: pointer;
+	border-style: solid;
+	border-color: #5E8CC3;
+	text-align: right;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.cancel-button {
+	font-size: 12px;
+	padding: 3.5px 20px;
+	margin-right: 5px;
+	background: #5E8CC3;
+	color: white;
+	cursor: pointer;
+	border-style: solid;
+	border-color: #5E8CC3;
+}
+
+.user_greet {
+	text-align: right;
+	margin-right: 15%;
+}
+
+.user_greet a {
+	text-decoration: none;
+	color: #880C17;
+}
+
+.navigation_bar ul {
+	list-style-type: none;
+	display: table;
+	table-layout: fixed;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: white;
+	width: 70%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+.navigation_bar li {
+	display: table-cell;
+	text-align: center;
+	border: solid 2px;
+}
+
+.navigation_bar li a {
+	display: block;
+	color: black;
+	padding: 6px;
+	text-decoration: none;
+}
+
+.navigation_bar .active {
+	background-color: #4887E4;
+	color: white;
+}
