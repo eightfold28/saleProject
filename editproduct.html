@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="product.css" type="text/css">
+		<script type="text/javascript" src="editproduct.js"></script>
+	</head>
+	<body>
+		<h1><font color= #CC3A41>Sale</font><font color= #4A679D>Project</font></h1>
+
+		<div class="user_greet">
+			Hi, user! <br>
+			<a href="">logout</a> <br>
+			<br>
+		</div>
+
+		<div class="navigation_bar">
+			<ul>
+				<li><a href="">Catalog</a></li>
+				<li><a href="yourproduct.html">Your Product</a></li>
+				<li><a href="addproduct.html">Add Product</a></li>
+				<li><a href="">Sales</a></li>
+				<li><a href="">Purchases</a></li>
+			</ul>
+		</div>
+
+		<h2>Please update your product here</h2>
+		<hr><br><br>
+
+		<?php
+
+			$servername = "localhost";
+			$dbusername = "root";
+			$dbpassword = "";
+			$dbname = "wbd";
+
+			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+			$item_ID = $_GET['item_ID'];
+
+			$sql = "SELECT item_ID, item_name, item_desc, item_price, item_likes, item_purchases, item_image, item_owner FROM item WHERE item_ID='$item_ID'";
+			$result = mysqli_query($con, $sql);
+			$row = mysqli_fetch_array($result);
+		?>
+
+		<form action="editproduct.php?item_ID=<?php echo $item_ID;?>" method="post" enctype="multipart/form-data">
+			Name<br>
+			<input type="text" name="item_name" value="<?php echo $row['item_name']; ?>">
+			<br>
+			<br>
+			Description (max 200 chars)<br>
+			<textarea name="item_desc" rows="7" cols="50"><?php echo $row['item_desc']; ?></textarea>
+			<br>
+			<br>
+			Price (IDR) <br>
+			<input type="text" name="item_price" value="<?php echo $row['item_price']; ?>">
+			<br>
+			<br>
+			<!-- Photo <br>
+			<input type="file" name="item_image"> -->
+			<br>
+			<br>
+			<br>		
+			<div class="cancel-button" style="float:right"><a href="yourproduct.html"> CANCEL </a></div>
+			<input type="submit" value="UPDATE" style="float: right;"> <br>
+		</form>
+	</body>
+</html>
