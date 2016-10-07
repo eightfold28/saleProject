@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<style type="text/css">
+			h1 {
+				font-family: "Lucida Sans Unicode";
+				font-size: 35px;
+				text-align: center;
+				margin-top: 50px;
+				margin-bottom: 100px;
+			}
+
+			h2 {
+				font-family: "Lucida Sans Unicode";
+				font-size: 20px;
+			}
+
+			body {
+				font-family: "Trebuchet MS";
+				font-size: 13px;
+				margin-left: 100px;
+				margin-right: 100px;
+				letter-spacing: 1px;
+			}
+
+			textarea {
+				resize: none;
+			}
+
+			input[type=submit] {
+				padding: 5px 25px;
+				margin-right: 5px;
+				background: #5E8CC3;
+				color: white;
+				cursor: pointer;
+				border-style: solid;
+				border-color: #5E8CC3;
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<h1><font color= #CC3A41>Sale</font><font color= #4A679D>Project</font></h1>
+
+		<h2>Please add your product here</h2>
+		<hr><br><br>
+
+		<form action="post.php" method="post" enctype="multipart/form-data">
+			Name<br>
+			<input type="text" name="item_name">
+			<br>
+			<br>
+			Description (max 200 chars)<br>
+			<textarea name="item_desc" rows="7"></textarea>
+			<br>
+			<br>
+			Price (IDR) <br>
+			<input type="text" name="item_price">
+			<br>
+			<br>
+			Photo <br>
+			<input type="file" name="item_image">
+			<br>
+			<br>
+			<br>		
+			<input type="submit" value="CANCEL" style="float: right;">
+			<input type="submit" value="ADD" style="float: right;"> <br>
+		</form>
+	</body>
+</html>

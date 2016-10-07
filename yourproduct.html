@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			h1 {
+				font-family: "Lucida Sans Unicode";
+				font-size: 35px;
+				text-align: center;
+				margin-top: 50px;
+				margin-bottom: 100px;
+			}
+
+			h2 {
+				font-family: "Lucida Sans Unicode";
+				font-size: 20px;
+			}
+
+			body {
+				font-family: "Trebuchet MS";
+				font-size: 13px;
+				margin-left: 100px;
+				margin-right: 100px;
+				letter-spacing: 1px;
+			}
+
+			p {
+				margin-top: 1px;
+				margin-bottom: 0px;
+				font-size: 20px;
+			}
+
+			input[type=submit] {
+				padding: 5px 25px;
+				margin-right: 5px;
+				background: #5E8CC3;
+				color: white;
+				cursor: pointer;
+				border-style: solid;
+				border-color: #5E8CC3;
+				text-align: right;
+			}
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1><font color= #CC3A41>Sale</font><font color= #4A679D>Project</font></h1>
+
+		<h2>What are you going to sell today?</h2>
+		<hr><br><br>
+		<?php
+
+			$servername = "localhost";
+			$dbusername = "root";
+			$dbpassword = "";
+			$dbname = "wbd";
+
+			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+			$sql = "SELECT item_ID, item_name, item_desc, item_price, item_likes, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') date_added, DATE_FORMAT(time_added, '%H.%i') time_added FROM item";
+			$result = mysqli_query($con, $sql);
+
+			while ($row = mysqli_fetch_array($result)) { ?>
+				<b><?php echo $row['date_added']; ?></b>
+				<br>
+				at <?php echo $row['time_added']; ?>
+				<br>
+				<hr><br>
+				<p style="float: left;"><?php echo '<img src="data:image/jpg;base64, '.base64_encode($row['item_image']). '" style="width:110px;height:110px;margin-right:25px;border:1px solid gray"/>' ?></p>
+				<div style="float:left; width:40%">
+					<p><b><?php echo $row['item_name']; ?> </b></p>
+					<p style="font-size:16px">IDR <?php echo $row['item_price']; ?></p>
+					<p style="font-size:13px; text-align: justify; margin-right:35px"><?php echo $row['item_desc']; ?></p>
+				</div>
+				<div style="float:left; width:40%; margin-left: 60px">
+					<br>
+					<p style="font-size: 13px"><?php echo $row['item_likes']; ?> likes</p>
+					<p style="font-size: 13px"><?php echo $row['item_purchases']; ?> purchases</p>
+					<br>
+					<br>
+					<br>
+					<div style="float:left; width:15%"><font color="orange" size=4px><b><a href="editproduct.html">EDIT</a></b></font></div>
+					<div style="float:left; width:15%"><font color="red" size=4px><b>DELETE</b></font></div>
+				</div>
+				<div style="clear: left"><br><br><hr></div>	
+			<?php } ?>
+	</body>
+</html>
