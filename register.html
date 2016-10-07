@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang= "en-US">
+<head>
+<style type=“text/css”>
+</style>
+<link rel="stylesheet" href="register.css" type="text/css">
+<script type="text/javascript" src="cekregister.js"></script>
+</head>
+<body>
+<h1> Sale<span class = "projectcolor">Project </span> </h1>
+<br> <br>
+
+<h2> Please login </h2>
+<hr>
+
+<form name= "registerForm" action= "register.php" onsubmit= "return validasiFormKosong()" method= "post">
+    Full Name <br>
+    <input type= "text" name= "fullname" value="" size= "60"> <br> 
+    Username <br>
+    <input type= "text" name= "username" value="" size= "60"> <br> 
+    Email <br>
+    <input type= "text" name= "email" value="" size= "60" onKeyup= "return validasiEmail(email)"> <br> 
+    Password <br>
+    <input type ="password" name= "password" value="" size= "60"> <br>
+    Confirm Password <br>
+    <input type= "password" name= "confirmpassword" value="" size= "60"> <br> 
+    Full Address <br>
+    <textarea name="fulladdress" cols= "60" rows="3"></textarea><br> 
+    Postal Code <br>
+    <input type= "text" name= "postalcode" value="" size= "60"> <br> 
+    Phone Number <br>
+    <input type= "text" name= "phonenumber" value="" size= "60"> <br> 
+    <br>
+    <input type="submit" value="REGISTER" style="float: right;">
+</form>
+
+<h3> Already registered? Login <a href="login.html"> here </h3>
+
+</body>
+</html>
