@@ -1,0 +1,115 @@
+/* Entire page style */
+body {
+	font-family: Montserrat;
+}
+
+/* Input-based style - font only */
+input {
+	font-family: Montserrat;
+}
+
+/* SaleProject title style */
+.title {
+	text-align: center;
+	color: #880C17;
+	font-size: 60px;
+	margin-top: -50px;
+}
+
+/* Hi, user style */
+.user_greet {
+	text-align: right;
+	margin-right: 15%;
+}
+
+/* Hi, user logout button style */
+.user_greet a {
+	text-decoration: none;
+	color: #880C17;
+}
+
+/* Navigation bar style */
+.navigation_bar ul {
+	list-style-type: none;
+	display: table;
+	table-layout: fixed;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: white;
+	width: 70%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+.navigation_bar li {
+	display: table-cell;
+	text-align: center;
+	border: solid 2px;
+}
+.navigation_bar li a {
+	display: block;
+	color: black;
+	padding: 6px;
+	text-decoration: none;
+}
+.navigation_bar .active {
+	background-color: #4887E4;
+	color: white;
+}
+
+/* Sub-menu header style - Catalog, Your Product, Add Product, Sales, Purchases, Confirm */
+.submenu_header {
+	margin-left: 15%;
+	font-size: 45px;
+}
+.submenu_header hr {
+	margin-left: 0%;
+	width: 82%;
+}
+
+/* Search bar style - used in Catalog */
+.search_bar {
+	margin-left: 15%;
+}
+.search_bar input[type=text] {
+	width: 75%;
+	padding: 10px 10px;
+	box-sizing: border-box;
+	background-color: #F3F3F3;
+	border: none;
+}
+.search_bar input[type=submit] {
+	width: 60px;
+	height: 35px;
+	margin-left: 20px;
+	background-color: #4887E4;
+	color: white;
+	font-size: 15px;
+	border: none;
+}
+
+/* Confirmation purchase style - used in Confitmation Purchase */
+.confirmation_purchase {
+	margin-left: 15%;
+	line-height: 200%;
+}
+.confirmation_purchase input[type=text] {
+	width: 50px;
+}
+.confirmation_purchase_form {
+	margin-left: 15%;
+}
+.confirmation_purchase_form input[type=text] {
+	width: 82%;
+	padding: 10px 10px;
+	box-sizing: border-box;
+}
+.confirmation_purchase_form input[type=submit] {
+	float: right;
+	width: 120px;
+	height: 30px;
+	margin-right: 18%;
+	background-color: #4887E4;
+	color: white;
+	border: none;
+}
