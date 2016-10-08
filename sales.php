@@ -15,15 +15,15 @@
 
     <?php include("userlogin.php"); ?>
 
-    <div class= "navigation_bar">
-        <ul>
-            <li><a href= <?php echo 'catalog.php?active_ID=' . $activeid?> >Catalog</a></li>
-            <li><a href="yourproduct.html">Your Products</a></li>
-            <li><a href="addproduct.html">Add Product</a></li>
-            <li><a class="active" href= <?php echo 'sales.php?active_ID=' . $activeid?> >Sales</a></li>
-            <li><a href= <?php echo 'purchases.php?active_ID=' . $activeid?> >Purchases</a></li>
-        </ul>
-    </div>
+    <div class="navigation_bar">
+			<ul>
+				<li><a href="catalog.php?active_ID=<?php echo $activeid; ?>">Catalog</a></li>
+				<li><a href="yourproduct.html?active_ID=<?php echo $activeid; ?>">Your Product</a></li>
+				<li><a href="addproduct.html?active_ID=<?php echo $activeid; ?>">Add Product</a></li>
+				<li><a class="active" href="sales.php?active_ID=<?php echo $activeid; ?>">Sales</a></li>
+				<li><a href="purchases.php?active_ID=<?php echo $activeid; ?>">Purchases</a></li>
+			</ul>
+		</div>
 
     <div class="submenu_header">
         <br>
