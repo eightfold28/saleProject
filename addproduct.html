@@ -4,7 +4,7 @@
 		<title>SaleProject</title>
 		<style type="text/css">
 		</style>
-		<link rel="stylesheet" href="product.css" type="text/css">
+		<link rel="stylesheet" type="text/css" href="SaleProjectStyle.css">
 		<script type="text/javascript" src="cekformproduct.js"></script>
 	</head>
 	<body>
@@ -21,37 +21,43 @@
 
 		<div class="navigation_bar">
 			<ul>
-				<li><a href="">Catalog</a></li>
+				<li><a href="catalog.php">Catalog</a></li>
 				<li><a href="yourproduct.html">Your Product</a></li>
-				<li><a class="active" href="">Add Product</a></li>
+				<li><a class="active" href="addproduct.html">Add Product</a></li>
 				<li><a href="sales.php">Sales</a></li>
-				<li><a href="">Purchases</a></li>
+				<li><a href="purchases.php">Purchases</a></li>
 			</ul>
 		</div>
 
-		<h2>Please add your product here</h2>
-		<hr><br><br>
+		<div class="submenu_header">
+			<br>
+			Please add your product here
+			<hr>
+		</div>
 
-		<form name="addproduct" action="addproduct.php" method="post" onsubmit="return validasiFormKosong()" enctype="multipart/form-data">
-			Name<br>
-			<input type="text" name="item_name">
-			<br>
-			<br>
-			Description (max 200 chars)<br>
-			<textarea name="item_desc" rows="7"></textarea>
-			<br>
-			<br>
-			Price (IDR) <br>
-			<input type="text" name="item_price">
-			<br>
-			<br>
-			Photo <br>
-			<input type="file" name="item_image">
-			<br>
-			<br>
-			<br>		
-			<div class="cancel-button" style="float:right"><a href="yourproduct.html"> CANCEL </a></div>
-			<input type="submit" value="ADD" style="float: right;"> <br>
-		</form>
+		<div class="product">
+			<form name="addproduct" action="addproduct.php" method="post" onsubmit="return validasiFormKosong()" enctype="multipart/form-data">
+				<small>Name</small> <br>
+				<input type="text" name="item_name">
+				<br>
+				<br>
+				<small>Description (max 200 chars)</small> <br>
+				<textarea name="item_desc" cols="105" rows="7"></textarea>
+				<br>
+				<br>
+				<small>Price (IDR)</small> <br>
+				<input type="text" name="item_price">
+				<br>
+				<br>
+				<small>Photo</small> <br>
+				<input type="file" name="item_image">
+				<br>
+				<br>
+				<br>		
+				<input type="submit" value="CANCEL" onclick="location.href='yourproduct.html'">
+				<input type="submit" value="ADD" style="margin-right: 30px"> <br>
+			</form>
+		</div>
+
 	</body>
 </html>
