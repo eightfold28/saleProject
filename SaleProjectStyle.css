@@ -88,7 +88,47 @@ input {
 	border: none;
 }
 
-/* Confirmation purchase style - used in Confitmation Purchase */
+/* Catalog style */
+.catalog_item {
+	margin-left: 15%;
+}
+.catalog_item hr {
+	margin-left: 0%;
+	width: 82%;
+}
+.catalog_item img {
+	float: left;
+}
+.catalog_item .name {
+	font-size: 20px;
+	font-weight: bold;
+}
+.catalog_item .detail {
+	word-wrap: break-word;
+	width: 800px;
+	font-size: 15px;
+}
+.catalog_item .count {
+	float: right;
+	margin-right: 20%;
+}
+.catalog_item .buybutton {
+	float: right;
+	margin-right: 20%;
+	line-height: 120px;
+	font-size: 20px;
+}
+.catalog_item .likebutton {
+	float: right;
+	margin-right: 50px;
+	line-height: 120px;
+	font-size: 20px;	
+}
+.clearfix {
+	clear: both;
+}
+
+/* Confirmation purchase style - used in Confirmation Purchase */
 .confirmation_purchase {
 	margin-left: 15%;
 	line-height: 200%;
@@ -112,4 +152,32 @@ input {
 	background-color: #4887E4;
 	color: white;
 	border: none;
+}
+.confirmation_purchase_form textarea {
+	resize: none; 
+	font-family: Montserrat;
+}
+
+/* Product style */
+.product {
+	margin-left: 15%;
+}
+.product input[type=text] {
+	width: 82%;
+	padding: 10px 10px;
+	box-sizing: border-box;
+}
+.product input[type=submit] {
+	float: right;
+	width: 120px;
+	height: 30px;
+	margin-right: 18%;
+	background-color: #4887E4;
+	color: white;
+	border: none;
+}
+
+.product textarea {
+	resize: none; 
+	font-family: Montserrat;
 }
