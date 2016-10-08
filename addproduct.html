@@ -15,13 +15,15 @@
 
 		<?php include("userlogin.php"); ?>
 
+		<?php $activeid = $_GET['active_ID']; ?>
+
 		<div class="navigation_bar">
 			<ul>
-				<li><a href="catalog.php">Catalog</a></li>
-				<li><a href="yourproduct.html">Your Product</a></li>
-				<li><a class="active" href="addproduct.html">Add Product</a></li>
-				<li><a href="sales.php">Sales</a></li>
-				<li><a href="purchases.php">Purchases</a></li>
+				<li><a href="catalog.php?active_ID=<?php echo $activeid; ?>">Catalog</a></li>
+				<li><a href="yourproduct.html?active_ID=<?php echo $activeid; ?>">Your Product</a></li>
+				<li><a class="active" href="addproduct.html?active_ID=<?php echo $activeid; ?>">Add Product</a></li>
+				<li><a href="sales.php?active_ID=<?php echo $activeid; ?>">Sales</a></li>
+				<li><a href="purchases.php?active_ID=<?php echo $activeid; ?>">Purchases</a></li>
 			</ul>
 		</div>
 
@@ -32,7 +34,7 @@
 		</div>
 
 		<div class="product">
-			<form name="addproduct" action="addproduct.php" method="post" onsubmit="return validasiFormKosong()" enctype="multipart/form-data">
+			<form name="addproduct" action="addproduct.php?active_ID=<?php echo $activeid; ?>" method="post" onsubmit="return validasiFormKosong()" enctype="multipart/form-data">
 				<small>Name</small> <br>
 				<input type="text" name="item_name">
 				<br>
@@ -50,7 +52,7 @@
 				<br>
 				<br>
 				<br>		
-				<input type="submit" value="CANCEL" onclick="location.href='yourproduct.html'">
+				<input type="submit" value="CANCEL" onclick="location.href='yourproduct.html?active_ID=<?php echo $activeid; ?>'">
 				<input type="submit" value="ADD" style="margin-right: 30px"> <br>
 			</form>
 		</div>
