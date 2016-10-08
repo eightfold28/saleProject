@@ -14,23 +14,20 @@
 			Sale<span style="color: #4887E4">Project</span> <br>
 		</div>
 
-        <?php include("userlogin.php"); ?>
+		<?php include("userlogin.php"); ?>
 
 		<div class="navigation_bar">
 			<ul>
-				<li><a href="catalog.php">Catalog</a></li>
-				<li><a class="active" href="yourproduct.html">Your Product</a></li>
-				<li><a href="addproduct.html">Add Product</a></li>
-				<li><a href="sales.php">Sales</a></li>
-				<li><a href="purchases.php">Purchases</a></li>
+				<li><a href="catalog.php?active_ID=<?php echo $activeid; ?>">Catalog</a></li>
+				<li><a class="active" href="yourproduct.html?active_ID=<?php echo $activeid; ?>">Your Product</a></li>
+				<li><a href="addproduct.html?active_ID=<?php echo $activeid; ?>">Add Product</a></li>
+				<li><a href="sales.php?active_ID=<?php echo $activeid; ?>">Sales</a></li>
+				<li><a href="purchases.php?active_ID=<?php echo $activeid; ?>">Purchases</a></li>
 			</ul>
 		</div>
-		<div class="submenu_header">
-			<br>
-			Please add your product here
-			<hr>
-		</div>
-		
+
+		<h2>What are you going to sell today?</h2>
+		<hr><br><br>
 		<?php
 
 			$servername = "localhost";
@@ -40,12 +37,13 @@
 
 			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
-            $active_ID=$_GET['active_ID'];
+			$active_ID=$_GET['active_ID'];
 			$owner_temp = mysqli_query($con, "SELECT FullName FROM user WHERE active_ID='$active_ID'");
 			$row = $owner_temp->fetch_assoc();
 			$item_owner = $row['FullName'];
-			
+
 			$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE (isDeleted IS NULL or isDeleted=0) and item_owner='$item_owner'";
+			
 			$result = mysqli_query($con, $sql);
 
 			if ($con->connect_error) {
@@ -77,8 +75,8 @@
 					<br>
 					<br>
 					<br>
-					<div style="float:left; width:15%"><font color="orange" size=4px><b><?php echo '<a href="editproduct.html?item_ID='.($row['item_ID']). '">' ?>EDIT</a></b></font></div>
-					<div style="float:left; width:15%"><font color="red" size=4px><b><?php echo "<a onClick=\"javascript: return confirm('Are you sure to delete this item?');\" href='yourproduct.php?item_ID=".$row['item_ID']."'>DELETE</a>"; ?></b></font></div>
+					<div style="float:left; width:15%"><font color="orange" size=4px><b><?php echo '<a href="editproduct.html?item_ID='.($row['item_ID']). '&active_ID='.$active_ID.'">' ?>EDIT</a></b></font></div>
+					<div style="float:left; width:15%"><font color="red" size=4px><b><?php echo "<a onClick=\"javascript: return confirm('Are you sure to delete this item?');\" href='yourproduct.php?item_ID=".$row['item_ID']."&active_ID=".$active_ID."'>DELETE</a>"; ?></b></font></div>
 				</div>
 				<div style="clear: left"><br><br><hr></div><br><br><br>
 			<?php } ?>
