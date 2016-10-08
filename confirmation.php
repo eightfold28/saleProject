@@ -21,9 +21,9 @@
 	<div class="navigation_bar">
 		<ul>
 			<li><a href= <?php echo 'catalog.php?active_ID=' . $activeid?> >Catalog</a></li>
-			<li><a href="">Your Products</a></li>
-			<li><a href="">Add Product</a></li>
-			<li><a href="">Sales</a></li>
+			<li><a href= <?php echo 'yourproduct.html?active_ID=' . $activeid ?> >Your Products</a></li>
+			<li><a href= <?php echo 'addproduct.html?active_ID=' . $activeid ?> >Add Product</a></li>
+			<li><a href= <?php echo 'sales.php?active_ID=' . $activeid?> >Sales</a></li>
 			<li><a href= <?php echo 'purchases.php?active_ID=' . $activeid ?> >Purchases</a></li>
 		</ul>
 	</div>
