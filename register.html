@@ -3,14 +3,20 @@
 <head>
 <style type=“text/css”>
 </style>
-<link rel="stylesheet" href="register.css" type="text/css">
+<link rel="stylesheet" href="SaleProjectStyle.css" type="text/css">
 </head>
 <body>
-<h1> Sale<span class = "projectcolor">Project </span> </h1>
-<br> <br>
 
-<h2> Please login </h2>
-<hr>
+    <div class="title">
+        <br>
+        Sale<span style="color: #4887E4">Project</span> <br>
+    </div>
+
+    <div class="submenu_header">
+        <br>
+        Please register
+        <hr>
+    </div>
 
 <?php
     error_reporting(0);
@@ -18,29 +24,33 @@
         echo "<h3>Username yang anda masukkan sudah ada. Coba yang lain lagi.</h3>";
     }
 ?>
+    <div class="loginregister">
+        <form name= "registerForm" action= "register.php" onsubmit= "return validasi()" method= "post">
+            <small> Full Name </small> <br>
+            <input type= "text" name= "fullname" value="" size= "60"> <br> 
+            <small> Username </small> <br>
+            <input type= "text" name= "username" value="" size= "60"> <br> 
+            <small> Email </small> <br>
+            <input type= "text" name= "email" value="" size= "60" onblur= "return validasiEmail()"> <br> 
+            <small> Password </small> <br>
+            <input type ="password" name= "password" value="" size= "60" > <br>
+            <small> Confirm Password </small> <br>
+            <input type= "password" name= "confirmpassword" value="" size= "60" onblur= "return validasiPassword()"> <br> 
+            <small> Full Address </small> <br>
+            <textarea name="fulladdress" cols= "105" rows="2"></textarea><br> 
+            <small> Postal Code </small> <br>
+            <input type= "text" name= "postalcode" value="" size= "60"> <br> 
+            <small> Phone Number </small> <br>
+            <input type= "text" name= "phonenumber" value="" size= "60"> <br> 
+            <br>
+            <input type="submit" value="REGISTER" style="float: right;">
+        </form>
+    </div>
 
-<form name= "registerForm" action= "register.php" onsubmit= "return validasi()" method= "post">
-    Full Name <br>
-    <input type= "text" name= "fullname" value="" size= "60"> <br> 
-    Username <br>
-    <input type= "text" name= "username" value="" size= "60"> <br> 
-    Email <br>
-    <input type= "text" name= "email" value="" size= "60" onblur= "return validasiEmail()"> <br> 
-    Password <br>
-    <input type ="password" name= "password" value="" size= "60" > <br>
-    Confirm Password <br>
-    <input type= "password" name= "confirmpassword" value="" size= "60" onblur= "return validasiPassword()"> <br> 
-    Full Address <br>
-    <textarea name="fulladdress" cols= "60" rows="3"></textarea><br> 
-    Postal Code <br>
-    <input type= "text" name= "postalcode" value="" size= "60"> <br> 
-    Phone Number <br>
-    <input type= "text" name= "phonenumber" value="" size= "60"> <br> 
-    <br>
-    <input type="submit" value="REGISTER" style="float: right;">
-</form>
+    <div class="regfirst">
+        Already registered? Login <a href="index.php"> here </a>
+    </div>
 
-<h3> Already registered? Login <a href="index.php"> here </h3>
 <script type="text/javascript" src="cekregister.js"></script>
 </body>
 </html>
