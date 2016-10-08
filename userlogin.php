@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="sales.css" type="text/css">
 
 <?php
-	// session_start();
 	$servername = "localhost";
 	$dbusername = "root";
 	$dbpassword = "";
