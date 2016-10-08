@@ -39,7 +39,7 @@
 	}
 
 	if ($con->query($sql) === TRUE) {
-	    header("Location: catalog.php?=active_ID=$activeid");
+	    header("Location: catalog.php?active_ID=$activeid");
 	} else {
 	    echo "Error: " . $sql . "<br>" . $con->error;
 	}
