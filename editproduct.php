@@ -3,7 +3,7 @@
 	$servername = "localhost";
 	$dbusername = "root";
 	$dbpassword = "";
-	$dbname = "wbd";
+	$dbname = "tubeswbd1";
 
 	$item_id = $_GET['item_ID'];
 	$item_name = $_POST['item_name'];
