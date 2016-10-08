@@ -4,7 +4,7 @@
 <head>
     <meta charset= "utf-8">
     <title>SaleProject</title>
-    <link rel="stylesheet" href="sales.css" type="text/css">
+    <link rel="stylesheet" href="SaleProjectStyle.css" type="text/css">
 </head>
 <body>
     <div class= "title">
@@ -16,18 +16,20 @@
     <?php include("userlogin.php"); ?>
 
     <div class= "navigation_bar">
-        <br>
         <ul>
-            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href= <?php echo 'catalog.php?active_ID=' . $activeid?> >Catalog</a></li>
             <li><a href="yourproduct.html">Your Products</a></li>
             <li><a href="addproduct.html">Add Product</a></li>
-            <li><a class="active" href="sales.html">Sales</a></li>
-            <li><a href="purchases.html">Purchases</a></li>
+            <li><a class="active" href= <?php echo 'sales.php?active_ID=' . $activeid?> >Sales</a></li>
+            <li><a href= <?php echo 'purchases.php?active_ID=' . $activeid?> >Purchases</a></li>
         </ul>
-        <br>
     </div>
-    <h2> Here are your sales </h2>
-    <hr>
+
+    <div class="submenu_header">
+        <br>
+        Here are your sales
+        <hr>
+    </div>
     <br>
     <?php
         $servername = "localhost";
