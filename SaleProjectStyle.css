@@ -99,14 +99,24 @@ input {
 .catalog_item img {
 	float: left;
 }
+.catalog_item .owner {
+	font-weight: bold;
+}
 .catalog_item .name {
 	font-size: 20px;
 	font-weight: bold;
+	margin-left: 250px;
+}
+.catalog_item .price {
+	margin-left: 250px;
+	font-size: 25px;
 }
 .catalog_item .detail {
 	word-wrap: break-word;
-	width: 800px;
-	font-size: 15px;
+	width: 600px;
+	font-size: 13px;
+	margin-left: 250px;
+	text-align: justify;
 }
 .catalog_item .count {
 	float: right;
@@ -114,15 +124,16 @@ input {
 }
 .catalog_item .buybutton {
 	float: right;
-	margin-right: 20%;
-	line-height: 120px;
+	margin-right: 19%;
+	margin-top: 10%;
 	font-size: 20px;
 }
 .catalog_item .likebutton {
 	float: right;
 	margin-right: 50px;
-	line-height: 120px;
-	font-size: 20px;	
+	margin-top: 10%;
+	font-size: 20px;
+	color: #4887E4;
 }
 .clearfix {
 	clear: both;
@@ -180,4 +191,39 @@ input {
 .product textarea {
 	resize: none; 
 	font-family: Montserrat;
+}
+
+/* Login-register style */
+.loginregister {
+	margin-left: 15%;
+	line-height: 200%;
+}
+.loginregister input[type=text] {
+	width: 82%;
+	padding: 10px 10px;
+	box-sizing: border-box;
+}
+.loginregister input[type=password] {
+	width: 82%;
+	padding: 10px 10px;
+	box-sizing: border-box;
+}
+.loginregister input[type=submit] {
+	float: right;
+	width: 100px;
+	height: 35px;
+	margin-right: 18%;
+	background-color: #4887E4;
+	color: white;
+	border: none;
+	margin-top: 30px;
+	font-size: 15px;
+}
+.loginregister textarea {
+	resize: none; 
+	font-family: Montserrat;
+}
+.regfirst {
+	margin-left: 15%;
+	margin-top: 5%;
 }
