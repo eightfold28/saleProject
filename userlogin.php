@@ -21,6 +21,6 @@
         <br>
         Hi, <?php echo $row['Username']; ?>! <br>
         <a href= "logout.php">logout</a>
-        <br>
+        <br> <br>
    		</div>
 	<?php }?>
