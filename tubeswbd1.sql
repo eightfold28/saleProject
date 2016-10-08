@@ -112,13 +112,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`active_ID`, `FullName`, `Username`, `Email`, `Password`, `FullAddress`, `PostalCode`, `PhoneNumber`) VALUES
-(1, 'asssasa', '', '', '', '', '', ''),
-(2, 'aass', 'jhhj', 'jhjhjh', 'jhjhjh', 'jhjhjhj', 'jhjhj', 'jhjh'),
-(3, 'sajhhsajj', 'jhsjjhshajsjhjh', 'hjhjhjhsjhsaha', 'hahaha', 'akjakjksajkjsajsa', '10650', '0818181812'),
-(6, 'assaassamn', '13514028', 'septia_17@yahoo.co.id', '1234561', 'sfasfl1', '2313', '111'),
-(7, 'assaassamn', 'jhhj', 'septia_17@yahoo.co.id', '12345', 'aaaa', '10231', '123'),
-(8, 'hihi', 'haha', 'haha@yahoo.com', 'haha', 'ha', 'ha', 'ha'),
-(9, 'Annisa Indah', 'indahannisa', 'annisaindah@gmail.com', 'indahannisa', 'Jl. Belalang no 23 Jakpus', '10870', '081315141627');
+(1, 'Annisa Indah', 'indahannisa', 'annisaindah@gmail.com', 'indahannisa123', 'Jalan Belalang Kupu no 66 Jakarta Pusat', '10870', '085399750408'),
+(2, 'Tomas Johnston', 'johnston', 'tomasj@gmail.com', 'jtomasohn111', 'Jalan Jendral Sudirman no 4 Bandung', '11342', '081248482016'),
+(3, 'Pamela Powers', 'pamelapowers', 'pamelapowers@gmail.com', 'pamela12345', 'Jalan Cibening Barat no 12 Bandung', '40280', '081234567890'),
+(4, 'Sulaiman Wira', 'sulaimanwira', 'sulaimanwira@gmail.com', 'sulaiman12345', 'Jalan Kepodang Camar no 47 Jakarta Selatan', '10640', '081720382611');
 
 --
 -- Indexes for dumped tables
