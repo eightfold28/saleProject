@@ -3,7 +3,7 @@
 	$servername = "localhost";
 	$dbusername = "root";
 	$dbpassword = "";
-	$dbname = "wbd";
+	$dbname = "tubeswbd1";
 
 	$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 	
@@ -11,9 +11,9 @@
 		die("connection failed: " . $con->connect_error);
 	}
 
-	$item_name=$_GET['item_name'];
+	$item_ID=$_GET['item_ID'];
 
-	$sql = "UPDATE item SET deleted=1 WHERE item_name='$item_name'";
+	$sql = "UPDATE item SET isDeleted=1 WHERE item_ID='$item_ID'";
 
 	$con->query($sql);
 

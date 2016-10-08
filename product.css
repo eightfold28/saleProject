@@ -44,6 +44,13 @@ a {
 	text-decoration: none;
 }
 
+.title {
+	text-align: center;
+	color: #880C17;
+	font-size: 60px;
+	margin-top: -50px;
+}
+
 .cancel-button {
 	font-size: 12px;
 	padding: 3.5px 20px;

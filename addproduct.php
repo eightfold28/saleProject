@@ -3,7 +3,7 @@
 	$servername = "localhost";
 	$dbusername = "root";
 	$dbpassword = "";
-	$dbname = "wbd";
+	$dbname = "tubeswbd1";
 
 	$item_name = (isset($_POST['item_name']) ? $_POST['item_name'] : '');
 	$item_desc = (isset($_POST['item_desc']) ? $_POST['item_desc'] : '');
@@ -19,7 +19,7 @@
 		die("connection failed: " . $con->connect_error);
 	}
 
-	$sql = "INSERT INTO item (item_name, item_desc, item_price, item_image) VALUES ('$item_name', '$item_desc', '$item_price', '$imagetmp')";
+	$sql = "INSERT INTO item (item_name, item_desc, item_price, item_image, item_owner) VALUES ('$item_name', '$item_desc', '$item_price', '$imagetmp')";
 
 	$con->query($sql);
 

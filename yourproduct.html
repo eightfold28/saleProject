@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+		<title>SaleProject</title>
 		<style type="text/css">
 		</style>
 		<link rel="stylesheet" href="product.css" type="text/css">
+		<script type="text/javascript" src="yourproduct.js"></script>
 	</head>
 	<body>
-		<h1><font color= #CC3A41>Sale</font><font color= #4A679D>Project</font></h1>
+		<div class="title">
+			<br>
+			Sale<span style="color: #4887E4">Project</span> <br>
+		</div>
 
 		<div class="user_greet">
 			Hi, user! <br>
@@ -19,7 +25,7 @@
 				<li><a href="">Catalog</a></li>
 				<li><a class="active" href="">Your Product</a></li>
 				<li><a href="addproduct.html">Add Product</a></li>
-				<li><a href="">Sales</a></li>
+				<li><a href="sales.php">Sales</a></li>
 				<li><a href="">Purchases</a></li>
 			</ul>
 		</div>
@@ -31,12 +37,16 @@
 			$servername = "localhost";
 			$dbusername = "root";
 			$dbpassword = "";
-			$dbname = "wbd";
+			$dbname = "tubeswbd1";
 
 			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
-			$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_likes, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, deleted FROM item WHERE deleted IS NULL";
+			$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE isDeleted IS NULL or isDeleted=0";
 			$result = mysqli_query($con, $sql);
+
+			if ($con->connect_error) {
+				die("connection failed: " . $con->connect_error);
+			}
 
 			while ($row = mysqli_fetch_array($result)) { ?>
 				<b><?php echo $row['dateadd']; ?></b>
@@ -52,13 +62,19 @@
 				</div>
 				<div style="float:left; width:40%; margin-left: 60px">
 					<br>
-					<p style="font-size: 13px"><?php echo $row['item_likes']; ?> likes</p>
+					<p style="font-size: 13px">
+						<?php 
+							$likes_temp = "SELECT COUNT(item_ID) as jumlahlikes FROM likes WHERE item_ID='".$row['item_ID']."'";
+							$likes_result = mysqli_query($con, $likes_temp);
+							while ($item_likes = mysqli_fetch_array($likes_result)) { echo $item_likes['jumlahlikes']; }
+						?>
+						likes</p>
 					<p style="font-size: 13px"><?php echo $row['item_purchases']; ?> purchases</p>
 					<br>
 					<br>
 					<br>
 					<div style="float:left; width:15%"><font color="orange" size=4px><b><?php echo '<a href="editproduct.html?item_ID='.($row['item_ID']). '">' ?>EDIT</a></b></font></div>
-					<div style="float:left; width:15%"><font color="red" size=4px><b><?php echo '<a href="yourproduct.php?item_name='.($row['item_name']). '">' ?> DELETE</a></b></font></div>
+					<div style="float:left; width:15%"><font color="red" size=4px><b><?php echo "<a onClick=\"javascript: return confirm('Are you sure to delete this item?');\" href='yourproduct.php?item_ID=".$row['item_ID']."'>DELETE</a>"; ?></b></font></div>
 				</div>
 				<div style="clear: left"><br><br><hr></div><br><br><br>
 			<?php } ?>

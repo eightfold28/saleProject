@@ -1,12 +1,17 @@
 <html>
 	<head>
+		<meta charset="utf-8">
+		<title>SaleProject</title>
 		<style type="text/css">
 		</style>
 		<link rel="stylesheet" href="product.css" type="text/css">
 		<script type="text/javascript" src="editproduct.js"></script>
 	</head>
 	<body>
-		<h1><font color= #CC3A41>Sale</font><font color= #4A679D>Project</font></h1>
+		<div class="title">
+			<br>
+			Sale<span style="color: #4887E4">Project</span> <br>
+		</div>
 
 		<div class="user_greet">
 			Hi, user! <br>
@@ -19,7 +24,7 @@
 				<li><a href="">Catalog</a></li>
 				<li><a href="yourproduct.html">Your Product</a></li>
 				<li><a href="addproduct.html">Add Product</a></li>
-				<li><a href="">Sales</a></li>
+				<li><a href="sales.php">Sales</a></li>
 				<li><a href="">Purchases</a></li>
 			</ul>
 		</div>
@@ -32,13 +37,13 @@
 			$servername = "localhost";
 			$dbusername = "root";
 			$dbpassword = "";
-			$dbname = "wbd";
+			$dbname = "tubeswbd1";
 
 			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
 			$item_ID = $_GET['item_ID'];
 
-			$sql = "SELECT item_ID, item_name, item_desc, item_price, item_likes, item_purchases, item_image, item_owner FROM item WHERE item_ID='$item_ID'";
+			$sql = "SELECT item_ID, item_name, item_desc, item_price, item_image, item_owner FROM item WHERE item_ID='$item_ID'";
 			$result = mysqli_query($con, $sql);
 			$row = mysqli_fetch_array($result);
 		?>
