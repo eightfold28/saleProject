@@ -8,6 +8,10 @@ input {
 	font-family: Montserrat;
 }
 
+a {
+	text-decoration: none;
+}
+
 /* SaleProject title style */
 .title {
 	text-align: center;
@@ -167,6 +171,7 @@ input {
 .confirmation_purchase_form textarea {
 	resize: none; 
 	font-family: Montserrat;
+	font-size: 13px;
 }
 
 /* Product style */
