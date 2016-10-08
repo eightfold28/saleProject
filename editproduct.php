@@ -3,7 +3,14 @@
 	$servername = "localhost";
 	$dbusername = "root";
 	$dbpassword = "";
-	$dbname = "tubeswbd1";
+	$dbname = "wbd";
+
+	$active_ID = $_GET['active_ID'];
+
+	$item_id = $_GET['item_ID'];
+	$item_name = $_POST['item_name'];
+	$item_desc = $_POST['item_desc'];
+	$item_price = $_POST['item_price'];
 
 	$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 	
@@ -11,15 +18,11 @@
 		die("connection failed: " . $con->connect_error);
 	}
 
-	$item_ID=$_GET['item_ID'];
-
-	$activeid = $_GET['active_ID'];
-
-	$sql = "UPDATE item SET isDeleted=1 WHERE item_ID='$item_ID'";
+	$sql = "UPDATE item SET item_name='$item_name', item_desc='$item_desc', item_price='$item_price' WHERE item_ID='$item_id'";
 
 	$con->query($sql);
 
 	$con->close();
 
-	header("Location: yourproduct.html?active_ID=$activeid"); exit();
+	header("Location: yourproduct.html?active_ID=$active_ID"); exit();
 ?>
