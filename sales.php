@@ -39,8 +39,14 @@
 
         $con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
-        $sql = "SELECT DATE_FORMAT(order_date, '%W, %e %M %Y') dateorder, DATE_FORMAT(order_date, '%H.%i') timeorder, item_name, item_image, item_price, FORMAT(item_price, 0) itemprice, quantity, cust_ID, deliv_name, deliv_address,
-            deliv_phone FROM purchase NATURAL JOIN item WHERE purchase.item_ID = item.item_ID and item_owner = '$username'";
+        $active_ID=$_GET['active_ID'];
+        $owner_temp = mysqli_query($con, "SELECT FullName FROM user WHERE active_ID='$active_ID'");
+        $row = $owner_temp->fetch_assoc();
+        $item_owner = $row['FullName'];
+
+
+        $sql = "SELECT item.item_ID, purchase.item_ID, item_owner, DATE_FORMAT(order_date, '%W, %e %M %Y') dateorder, DATE_FORMAT(order_date, '%H.%i') timeorder, item_name, item_image, item_price, FORMAT(item_price, 0) itemprice, quantity, cust_ID, deliv_name, deliv_address,
+            deliv_phone FROM purchase, item WHERE purchase.item_ID = item.item_ID and item_owner = '$item_owner'";
         $result = mysqli_query($con, $sql); 
         
         while ($row = mysqli_fetch_array($result)) { ?>
