@@ -4,16 +4,21 @@
 
 <style type=“text/css”>
 </style>
-<link rel="stylesheet" href="login.css" type="text/css">
+<link rel="stylesheet" href="SaleProjectStyle.css" type="text/css">
 <script type="text/javascript" src="ceklogin.js"></script>
 </head>
 
 <body>
-<h1> Sale<span class = "projectcolor">Project </span> </h1>
-<br> <br>
+    <div class="title">
+            <br>
+            Sale<span style="color: #4887E4">Project</span> <br>
+    </div>
 
-<h2> Please login </h2>
-<hr>
+    <div class="submenu_header">
+        <br>
+        Please login
+        <hr>
+    </div>
 
 <?php
 	error_reporting(0);
@@ -22,16 +27,20 @@
 	}
 ?>
 
-<form name= "LoginForm" action= "login.php" onsubmit= "return validasiFormKosong()" method= "post">
-    Email or Username <br>
-    <input type= "text" name= "EmailOrUsername" size= "60" value=""> <br> 
-    Password <br>
-    <input type ="password" name= "Password" size= "60" value="">
-    <br>
-    <input type="submit" value="LOGIN" style="float: right;">
-</form>
+    <div class="loginregister">
+        <form name= "LoginForm" action= "login.php" onsubmit= "return validasiFormKosong()" method= "post">
+            <small> Email or Username </small> <br>
+            <input type= "text" name= "EmailOrUsername" size= "60" value=""> <br> <br>  
+            <small> Password </small> <br>
+            <input type ="password" name= "Password" size= "60" value="">
+            <br>
+            <input type="submit" value="LOGIN" style="float: right;"> <br>
+        </form>
+    </div>
 
-<h3> Don't have an account yet? Register <a href="register.html"> here </h3>
+    <div class="regfirst">
+        Don't have an account yet? Register <a href="register.html"> here </a>
+    </div>
 
 </body>
 </html>
