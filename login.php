@@ -10,23 +10,22 @@
 	if ($con->connect_error) {
 		die("connection failed: " . $con->connect_error);
 	}
-	session_start();
-	if ($_GET["EmailOrUsername"] || $_GET["Password"]) {
-		$username = $_GET["EmailOrUsername"];
-		$password = $_GET["Password"];
 
-		$res1 = mysqli_query($con, "SELECT Username, Password FROM User WHERE
-			Username = '$username' AND Password = '$password'");
-
-        if(mysqli_num_rows($res1) > 0 ) { 
-            $_SESSION["IsLoggedIn"] = true; 
-            $_SESSION["name"] = $username; 
-            echo 'bisa';
-        }
-        else {
-            echo 'The username or password are incorrect!';
-        }
+	$username = $_POST["EmailOrUsername"];
+	$password = $_POST["Password"];
+	
+	$sql = "SELECT active_ID FROM user WHERE Username = '$username' and Password = '$password'";
+	$result = mysqli_query($con, $sql);
+	$count = mysqli_num_rows($result);
+	while ($row = mysqli_fetch_array($result)) {
+		$activeid = $row['active_ID'];
 	}
 
-	$con->close();
+	if ($count == 1) {
+		header("Location: catalog.php?active_ID=$activeid");
+	} else {
+		echo "fail!";
+		header('Location: index.php?error=1');
+		die();
+	}
 ?>
