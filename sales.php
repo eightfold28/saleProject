@@ -12,12 +12,9 @@
         Sale<span style= "color: #4887E4">Project</span>
         <br>
     </div>
-    <div class= "user_greet">
-        <br>
-        Hi, user! <br>
-        <a href= "login.html">logout</a>
-        <br>
-    </div>
+
+    <?php include("userlogin.php"); ?>
+
     <div class= "navigation_bar">
         <br>
         <ul>
@@ -25,7 +22,7 @@
             <li><a href="yourproduct.html">Your Products</a></li>
             <li><a href="addproduct.html">Add Product</a></li>
             <li><a class="active" href="sales.html">Sales</a></li>
-            <li><a href="purchase.html">Purchases</a></li>
+            <li><a href="purchases.html">Purchases</a></li>
         </ul>
         <br>
     </div>
@@ -41,9 +38,7 @@
         $con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
         $sql = "SELECT DATE_FORMAT(order_date, '%W, %e %M %Y') dateorder, DATE_FORMAT(order_date, '%H.%i') timeorder, item_name, item_image, item_price, FORMAT(item_price, 0) itemprice, quantity, cust_ID, deliv_name, deliv_address,
-            deliv_phone FROM purchase NATURAL JOIN item WHERE purchase.item_ID = item.item_ID";
-        // $totalharga = item_price*quantity;
-        /*  and item_owner = $_GET["Username"] */
+            deliv_phone FROM purchase NATURAL JOIN item WHERE purchase.item_ID = item.item_ID and item_owner = '$username'";
         $result = mysqli_query($con, $sql); 
         
         while ($row = mysqli_fetch_array($result)) { ?>
