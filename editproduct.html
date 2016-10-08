@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>SaleProject</title>
 		<style type="text/css">
 		</style>
-		<link rel="stylesheet" type="text/css" href="SaleProjectStyle.css">
-		<script type="text/javascript" src="editproduct.js"></script>
+		<link rel="stylesheet" href="product.css" type="text/css">
+		<script type="text/javascript" src="yourproduct.js"></script>
 	</head>
 	<body>
 		<div class="title">
@@ -13,28 +14,20 @@
 			Sale<span style="color: #4887E4">Project</span> <br>
 		</div>
 
-		<div class="user_greet">
-			Hi, user! <br>
-			<a href="">logout</a> <br>
-			<br>
-		</div>
+		<?php include("userlogin.php"); ?>
 
 		<div class="navigation_bar">
 			<ul>
-				<li><a href="catalog.php">Catalog</a></li>
-				<li><a href="yourproduct.html">Your Product</a></li>
-				<li><a href="addproduct.html">Add Product</a></li>
-				<li><a href="sales.php">Sales</a></li>
-				<li><a href="purchases.php">Purchases</a></li>
+				<li><a href="catalog.php?active_ID=<?php echo $activeid; ?>">Catalog</a></li>
+				<li><a class="active" href="yourproduct.html?active_ID=<?php echo $activeid; ?>">Your Product</a></li>
+				<li><a href="addproduct.html?active_ID=<?php echo $activeid; ?>">Add Product</a></li>
+				<li><a href="sales.php?active_ID=<?php echo $activeid; ?>">Sales</a></li>
+				<li><a href="purchases.php?active_ID=<?php echo $activeid; ?>">Purchases</a></li>
 			</ul>
 		</div>
 
-		<div class="submenu_header">
-			<br>
-			Please update your product here
-			<hr>
-		</div>
-
+		<h2>What are you going to sell today?</h2>
+		<hr><br><br>
 		<?php
 
 			$servername = "localhost";
@@ -44,35 +37,48 @@
 
 			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
-			$item_ID = $_GET['item_ID'];
+			$active_ID=$_GET['active_ID'];
+			$owner_temp = mysqli_query($con, "SELECT FullName FROM user WHERE active_ID='$active_ID'");
+			$row = $owner_temp->fetch_assoc();
+			$item_owner = $row['FullName'];
 
-			$sql = "SELECT item_ID, item_name, item_desc, item_price, item_image, item_owner FROM item WHERE item_ID='$item_ID'";
+			$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE (isDeleted IS NULL or isDeleted=0) and item_owner='$item_owner'";
+			
 			$result = mysqli_query($con, $sql);
-			$row = mysqli_fetch_array($result);
-		?>
 
-		<div class="product">
-			<form action="editproduct.php?item_ID=<?php echo $item_ID;?>" method="post" enctype="musltipart/form-data">
-				<small>Name</small> <br>
-				<input type="text" name="item_name" value="<?php echo $row['item_name']; ?>">
+			if ($con->connect_error) {
+				die("connection failed: " . $con->connect_error);
+			}
+
+			while ($row = mysqli_fetch_array($result)) { ?>
+				<b><?php echo $row['dateadd']; ?></b>
 				<br>
+				at <?php echo $row['time_added']; ?>
 				<br>
-				<small>Description (max 200 chars)</small> <br>
-				<textarea name="item_desc" cols="105" rows="7"><?php echo $row['item_desc']; ?></textarea>
-				<br>
-				<br>
-				<small>Price (IDR)</small> <br>
-				<input type="text" name="item_price" value="<?php echo $row['item_price']; ?>">
-				<br>
-				<br>
-				<!-- Photo <br>
-				<input type="file" name="item_image"> -->
-				<br>
-				<br>
-				<br>		
-				<input type="submit" value="CANCEL" onclick="location.href='yourproduct.html'">
-				<input type="submit" value="UPDATE" style="margin-right: 30px"> <br>
-			</form>
-		</div>
+				<hr><br>
+				<p style="float: left;"><?php echo '<img src="data:image/jpg;base64, '.base64_encode($row['item_image']). '" style="width:110px;height:110px;margin-right:25px;border:1px solid gray"/>' ?></p>
+				<div style="float:left; width:40%">
+					<p><b><?php echo $row['item_name']; ?> </b></p>
+					<p style="font-size:16px">IDR <?php echo $row['item_price']; ?></p>
+					<p style="font-size:13px; text-align: justify; margin-right:35px"><?php echo $row['item_desc']; ?></p>
+				</div>
+				<div style="float:left; width:40%; margin-left: 60px">
+					<br>
+					<p style="font-size: 13px">
+						<?php 
+							$likes_temp = "SELECT COUNT(item_ID) as jumlahlikes FROM likes WHERE item_ID='".$row['item_ID']."'";
+							$likes_result = mysqli_query($con, $likes_temp);
+							while ($item_likes = mysqli_fetch_array($likes_result)) { echo $item_likes['jumlahlikes']; }
+						?>
+						likes</p>
+					<p style="font-size: 13px"><?php echo $row['item_purchases']; ?> purchases</p>
+					<br>
+					<br>
+					<br>
+					<div style="float:left; width:15%"><font color="orange" size=4px><b><?php echo '<a href="editproduct.html?item_ID='.($row['item_ID']). '&active_ID='.$active_ID.'">' ?>EDIT</a></b></font></div>
+					<div style="float:left; width:15%"><font color="red" size=4px><b><?php echo "<a onClick=\"javascript: return confirm('Are you sure to delete this item?');\" href='yourproduct.php?item_ID=".$row['item_ID']."&active_ID=".$active_ID."'>DELETE</a>"; ?></b></font></div>
+				</div>
+				<div style="clear: left"><br><br><hr></div><br><br><br>
+			<?php } ?>
 	</body>
 </html>
