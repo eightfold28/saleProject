@@ -5,6 +5,8 @@
 	$dbpassword = "";
 	$dbname = "tubeswbd1";
 
+	$active_ID = $_GET['active_ID'];
+
 	$item_name = (isset($_POST['item_name']) ? $_POST['item_name'] : '');
 	$item_desc = (isset($_POST['item_desc']) ? $_POST['item_desc'] : '');
 	$item_price = (isset($_POST['item_price']) ? $_POST['item_price'] : '');
@@ -30,5 +32,5 @@
 
 	$con->close();
 
-	header("Location: yourproduct.html"); exit();
+	header("Location: yourproduct.html?active_ID=$active_ID"); exit();
 ?>
