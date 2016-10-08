@@ -4,7 +4,6 @@
 <style type=“text/css”>
 </style>
 <link rel="stylesheet" href="register.css" type="text/css">
-<script type="text/javascript" src="cekregister.js"></script>
 </head>
 <body>
 <h1> Sale<span class = "projectcolor">Project </span> </h1>
@@ -13,17 +12,24 @@
 <h2> Please login </h2>
 <hr>
 
-<form name= "registerForm" action= "register.php" onsubmit= "return validasiFormKosong()" method= "post">
+<?php
+    error_reporting(0);
+    if($_GET["error"] == 2) {
+        echo "<h3>Username yang anda masukkan sudah ada. Coba yang lain lagi.</h3>";
+    }
+?>
+
+<form name= "registerForm" action= "register.php" onsubmit= "return validasi()" method= "post">
     Full Name <br>
     <input type= "text" name= "fullname" value="" size= "60"> <br> 
     Username <br>
     <input type= "text" name= "username" value="" size= "60"> <br> 
     Email <br>
-    <input type= "text" name= "email" value="" size= "60" onKeyup= "return validasiEmail(email)"> <br> 
+    <input type= "text" name= "email" value="" size= "60" onblur= "return validasiEmail()"> <br> 
     Password <br>
-    <input type ="password" name= "password" value="" size= "60"> <br>
+    <input type ="password" name= "password" value="" size= "60" > <br>
     Confirm Password <br>
-    <input type= "password" name= "confirmpassword" value="" size= "60"> <br> 
+    <input type= "password" name= "confirmpassword" value="" size= "60" onblur= "return validasiPassword()"> <br> 
     Full Address <br>
     <textarea name="fulladdress" cols= "60" rows="3"></textarea><br> 
     Postal Code <br>
@@ -34,7 +40,7 @@
     <input type="submit" value="REGISTER" style="float: right;">
 </form>
 
-<h3> Already registered? Login <a href="login.html"> here </h3>
-
+<h3> Already registered? Login <a href="index.php"> here </h3>
+<script type="text/javascript" src="cekregister.js"></script>
 </body>
 </html>
