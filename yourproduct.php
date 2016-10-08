@@ -13,11 +13,13 @@
 
 	$item_ID=$_GET['item_ID'];
 
+	$activeid = $_GET['active_ID'];
+
 	$sql = "UPDATE item SET isDeleted=1 WHERE item_ID='$item_ID'";
 
 	$con->query($sql);
 
 	$con->close();
 
-	header("Location: yourproduct.html"); exit();
+	header("Location: yourproduct.html?active_ID=$activeid"); exit();
 ?>
