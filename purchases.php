@@ -34,78 +34,59 @@
 		<hr>
 	</div>
 
-	<div class="catalog_item">
+	<!-- <div class="catalog_item"> -->
 		<?php
-			//Take user_id with GET
-			$user = $_GET['active_ID'];
+	        $servername = "localhost";
+	        $dbusername = "root";
+	        $dbpassword = "";
+	        $dbname = "tubeswbd1";
 
-			//Connect to database to take purchase history
-			$servername = "localhost";
-			$dbusername = "root";
-			$dbpassword = "";
-			$dbname = "tubeswbd1";
+	        $con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
-			$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-
-			if($conn->connect_error) {
-				die("Connection failed : " . $conn->connect_error);
-			}
-
-			$purchase_sql = "SELECT * FROM purchase WHERE cust_ID = '$user'";
-			$purchase_result = $conn->query($purchase_sql);
-			
-			//Take seller detail
-			$item_sql = "SELECT * FROM item";
-			$item_result = $conn->query($item_sql);
-			$item_detail = $item_result->fetch_assoc();
-		?>
-
-		<?php
-			if($purchase_result->num_rows > 0) {
-				while($purchase_detail = $purchase_result->fetch_assoc()) {
-					//BUY DATE
-					echo "<br> <br>";
-					echo $row['date_added'];
-					echo "<hr> <br>";
+	        $active_ID=$_GET['active_ID'];
 
 
-					//ITEM IMAGE
-					$img_sql = "SELECT item_image FROM item WHERE item_ID = item_ID";
-					$img_result = $conn->query($img_sql);
-					$img_detail = $img_result->fetch_assoc();
-					echo '<img src ="data:image/jpeg;base64,' . base64_encode($img_detail['item_image']) . '"/> <br>';
-
-
-					//ITEM NAME
-					$name_sql = "SELECT item_name FROM item";
-					$name_result = $conn->query($name_sql);
-					$name_detail = $name_result->fetch_assoc();
-					echo '<div class="name">' . $name_detail['item_name'] . "</div>";
-
-
-					//ITEM PRICE
-					$price_sql = "SELECT item_price FROM item";
-					$price_result = $conn->query($price_sql);
-					$price_detail = $price_result->fetch_assoc();
-					echo '<div class="price"> IDR ' . $price_detail['item_price'] . '</div>';
-
-					//PURCHASE DETAIL
-					echo '<div class="count"> Delivery to <b>' . $purchase_detail['deliv_name'] . '</b> <br>';
-					echo $purchase_detail['deliv_address'] . '<br>';
-					echo $purchase_detail['deliv_postalcode'] . '<br>';
-					echo $purchase_detail['deliv_phone'] . '<br>';
-					$seller_sql = "SELECT item_owner FROM item";
-					$seller_result = $conn->query($seller_sql);
-					$seller_detail = $seller_result->fetch_assoc();
-					echo 'bought from <b>' . $seller_detail['item_owner'] . '</b> <br> <br>';
-				}
-			}
-			else
-			{
-				echo "No purchase history";
-			}
-		?>
-	</div>
+	        $sql = "SELECT item.item_ID, purchase.item_ID, item_owner, DATE_FORMAT(order_date, '%W, %e %M %Y') dateorder, DATE_FORMAT(order_date, '%H.%i') timeorder, item_name, item_image, item_price, FORMAT(item_price, 0) itemprice, quantity, cust_ID, deliv_name, deliv_address,
+	            deliv_phone FROM purchase, item WHERE purchase.item_ID = item.item_ID and cust_ID = '$active_ID'";
+	        $result = mysqli_query($con, $sql); 
+	        
+	        while ($row = mysqli_fetch_array($result)) { 
+	        	$activeid = $row['item_owner'];
+				$owner_temp = mysqli_query($con, "SELECT Username FROM user WHERE active_ID='$activeid'");
+				$owner = $owner_temp->fetch_assoc();
+				$item_owner = $owner['Username'];
+	        	?>
+	            <div class= "sales_history">
+	                <br><b>
+	                <?php echo $row['dateorder']; ?></b>
+	                <br>
+	                <?php echo $row['timeorder']; ?>
+	                <hr>
+	                <?php echo '<img src="data:image/jpg;base64, '.base64_encode($row['item_image']). '"/>' ?>
+	                <p>
+	                    <span class= "itemname"><?php echo $row['item_name']; ?></span>
+	                    <span class= "order-detail">Delivery to <span class= "boldfont"><?php echo $row['deliv_name']; ?></span></span>
+	                    <br>
+	                    IDR <?php $totalharga = $row['item_price'] * $row['quantity'];
+	                    $total = number_format($totalharga);
+	                    echo $total; ?>
+	                    <span class= "order-detail"><?php echo $row['deliv_address']; ?></span>
+	                    <br>
+	                    <?php echo $row['quantity']; ?> pcs
+	                    <span class= "order-detail">Bandung</span>
+	                    <br>
+	                    @IDR <?php echo $row['itemprice']; ?>
+	                    <span class= "order-detail">40280
+	                        <br>
+	                        <?php echo $row['deliv_phone']; ?>
+	                        <br>
+	                        bought from <span class= "boldfont"><?php echo $item_owner; ?>
+	                    </span>
+	                    <br> </span>
+	                 </p>
+	                 <br><br><br><br>
+	        <?php }?>
+	<!-- </div> -->
 
 </body>
 

@@ -30,7 +30,6 @@
         Here are your sales
         <hr>
     </div>
-    <br>
     <?php
         $servername = "localhost";
         $dbusername = "root";
@@ -40,19 +39,24 @@
         $con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
         $active_ID=$_GET['active_ID'];
-        $owner_temp = mysqli_query($con, "SELECT FullName FROM user WHERE active_ID='$active_ID'");
-        $row = $owner_temp->fetch_assoc();
-        $item_owner = $row['FullName'];
 
 
-        $sql = "SELECT item.item_ID, purchase.item_ID, item_owner, DATE_FORMAT(order_date, '%W, %e %M %Y') dateorder, DATE_FORMAT(order_date, '%H.%i') timeorder, item_name, item_image, item_price, FORMAT(item_price, 0) itemprice, quantity, cust_ID, deliv_name, deliv_address,
-            deliv_phone FROM purchase, item WHERE purchase.item_ID = item.item_ID and item_owner = '$item_owner'";
+        $sql = "SELECT purchase.item_ID, item_owner, DATE_FORMAT(order_date, '%W, %e %M %Y') dateorder, DATE_FORMAT(order_date, '%H.%i') timeorder, item_name, item_image, item_price, FORMAT(item_price, 0) itemprice, quantity, cust_ID, deliv_name, deliv_address,
+            deliv_phone FROM purchase INNER JOIN item ON purchase.item_ID = item.item_ID WHERE item_owner = '$active_ID'";
         $result = mysqli_query($con, $sql); 
         
-        while ($row = mysqli_fetch_array($result)) { ?>
+        while ($row = mysqli_fetch_array($result)) { 
+            $cust_ID = $row['cust_ID'];
+            $cust_temp = mysqli_query($con, "SELECT Username FROM user WHERE active_ID='$cust_ID'");
+            $cust = $cust_temp->fetch_assoc();
+            $customer = $cust['Username'];
+
+            $totalharga = $row['item_price'] * $row['quantity'];
+            $total = number_format($totalharga);
+            ?>
             <div class= "sales_history">
-                <br>
-                <?php echo $row['dateorder']; ?>
+                <br><b>
+                <?php echo $row['dateorder']; ?></b>
                 <br>
                 <?php echo $row['timeorder']; ?>
                 <hr>
@@ -61,9 +65,7 @@
                     <span class= "itemname"><?php echo $row['item_name']; ?></span>
                     <span class= "order-detail">Delivery to <span class= "boldfont"><?php echo $row['deliv_name']; ?></span></span>
                     <br>
-                    IDR <?php $totalharga = $row['item_price'] * $row['quantity'];
-                    $total = number_format($totalharga);
-                    echo $total; ?>
+                    IDR <?php echo $total; ?>
                     <span class= "order-detail"><?php echo $row['deliv_address']; ?></span>
                     <br>
                     <?php echo $row['quantity']; ?> pcs
@@ -74,7 +76,7 @@
                         <br>
                         <?php echo $row['deliv_phone']; ?>
                         <br>
-                        bought by <span class= "boldfont"><?php echo $row['cust_ID']; ?>
+                        bought by <span class= "boldfont"><?php echo $customer ?>
                     </span>
                     <br> </span>
                  </p>

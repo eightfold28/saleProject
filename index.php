@@ -23,7 +23,8 @@
 <?php
 	error_reporting(0);
 	if($_GET["error"] == 1) {
-		echo "<h3>Username atau password anda salah. Coba lagi.</h3>";
+        echo '<div class= "errorregister">' .
+        "<h3>Username atau password anda salah. Coba lagi.</h3>" . "</div>";
 	}
 ?>
 

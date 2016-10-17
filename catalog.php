@@ -16,15 +16,16 @@
 		
 	<?php
 		include 'userlogin.php';
+		$active_ID=$_GET['active_ID'];
 	?>
 
 	<div class="navigation_bar">
 		<ul>
-			<li><a class="active" href= <?php echo 'catalog.php?active_ID=' . $activeid?> >Catalog</a></li>
-			<li><a href= <?php echo 'yourproduct.html?active_ID=' . $activeid ?> >Your Products</a></li>
-			<li><a href= <?php echo 'addproduct.html?active_ID=' . $activeid ?> >Add Product</a></li>
-			<li><a href= <?php echo 'sales.php?active_ID=' . $activeid?> >Sales</a></li>
-			<li><a href= <?php echo 'purchases.php?active_ID=' . $activeid ?> >Purchases</a></li>
+			<li><a class="active" href= <?php echo 'catalog.php?active_ID=' . $active_ID?> >Catalog</a></li>
+			<li><a href= <?php echo 'yourproduct.html?active_ID=' . $active_ID ?> >Your Products</a></li>
+			<li><a href= <?php echo 'addproduct.html?active_ID=' . $active_ID ?> >Add Product</a></li>
+			<li><a href= <?php echo 'sales.php?active_ID=' . $active_ID?> >Sales</a></li>
+			<li><a href= <?php echo 'purchases.php?active_ID=' . $active_ID ?> >Purchases</a></li>
 		</ul>
 	</div>
 
@@ -35,7 +36,7 @@
 	</div>
 
 	<div class="search_bar">
-		<form action= <?php echo 'catalog.php?active_ID=' . $activeid?> method="post" >
+		<form action= <?php echo 'catalog.php?active_ID=' . $active_ID?> method="post" >
 			<input type="text" name="search_catalog" placeholder="Search catalog ...">
 			<input type="submit" value="GO">
 			<br> <br>
@@ -58,21 +59,19 @@
 				die("Connection failed : " . $conn->connect_error);
 			}
 
-			//Checking search bar has been used or not
 			if(empty($_POST['search_catalog'])) {
-				$sql = "SELECT * FROM item WHERE isDeleted = 0 ORDER BY date_added DESC";
+				$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE isDeleted = 0 ORDER BY date_added DESC";
 			}
 			else {
-				if($_POST['search_method'] == 'product') {
-					$sql = "SELECT * FROM item WHERE isDeleted = 0
-					AND INSTR(item_name,'" . mysql_escape_string($_POST['search_catalog'])."')
-					ORDER BY date_added DESC";
+				$search = $_POST['search_catalog'];
+				if (strcmp($_POST['search_method'], "product") == 0) {
+					$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE (isDeleted = 0)
+					AND (item_name LIKE '%$search%')";
 				}
 				else
-				if($_POST['search_method'] == 'store') {
-					$sql = "SELECT * FROM item WHERE isDeleted = 0
-					AND INSTR(item_owner,'" . mysql_escape_string($_POST['search_catalog'])."')
-					ORDER BY date_added DESC";
+				if(strcmp($_POST['search_method'], "store") == 0) {
+					$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted, Username FROM item, user WHERE (item.isDeleted = 0) AND (item.item_owner = user.active_ID)
+					AND (user.Username LIKE '%$search%')";
 				}
 			}
 
@@ -81,8 +80,12 @@
 			if($result->num_rows > 0) {
 				while($row = $result->fetch_assoc()) {
 					//ITEM OWNER
-					echo '<br> <div class="owner">' . $row['item_owner'] . "</div>";
-					echo "added this on " . $row['date_added'];
+					$activeid = $row['item_owner'];
+					$owner_temp = mysqli_query($con, "SELECT Username FROM user WHERE active_ID='$activeid'");
+					$owner = $owner_temp->fetch_assoc();
+					$item_owner = $owner['Username'];
+					echo '<br> <div class="owner">' . $item_owner . "</div>";
+					echo "added this on " . $row['dateadd'] . ", on " .$row['time_added'];
 					echo "<hr> <br>";
 
 		
@@ -100,7 +103,7 @@
 
 					//LIKE PURCHASE COUNT
 					$item_number = $row['item_ID'];
-					$like_sql = "SELECT COUNT(user_ID) AS like_count FROM likes WHERE item_ID = $item_number ";
+					$like_sql = "SELECT COUNT(active_ID) AS like_count FROM likes WHERE item_ID = $item_number ";
 					$like_result = $conn->query($like_sql);
 					$like = $like_result->fetch_assoc();
 					echo '<div class="count">' . $like['like_count'] . ' likes <br>';
@@ -124,11 +127,18 @@
 					//LIKE BUY BUTTON
 					echo '<br>
 					<div class="buybutton">
-						<a href=confirmation.php?active_ID=' . $activeid . '&item_num=' . $row['item_ID'] . '> BUY </a>
+						<a href=confirmation.php?active_ID=' . $active_ID . '&item_num=' . $row['item_ID'] . '> BUY </a>
 					</div>';
 					
-					echo '<div class="likebutton">LIKE</div>';
-					
+					//LIKE BUTTON
+					$item_id = $row['item_ID'];
+					$statlike = "SELECT * FROM likes where active_ID = '$active_ID' AND item_ID = '$item_id'";
+					$resultlike = $conn->query($statlike);
+					if($resultlike->num_rows > 0) {
+						echo '<div class="likebutton" id= "'.$item_id .'" ><a href="#" return onclick="unlikecount('.$item_id.', '.$active_ID.');return false;"">LIKED</a></div>';
+					} else {
+						echo '<div class="likebutton" id= "'.$item_id .'" ><a href="#" return onclick="likecount('.$item_id.', '.$active_ID.');return false;"">LIKE</a></div>';
+					}
 
 					//CLEARFIX FLOAT
 					echo '<div class="clearfix"></div>';
@@ -145,5 +155,5 @@
 	</div>
 	
 </body>
-
+<script type="text/javascript" src="ceklike.js"></script>
 </html>

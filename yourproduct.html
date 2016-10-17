@@ -6,7 +6,6 @@
 		<style type="text/css">
 		</style>
 		<link rel="stylesheet" href="SaleProjectStyle.css" type="text/css">
-		<script type="text/javascript" src="yourproduct.js"></script>
 	</head>
 	<body>
 		<div class="title">
@@ -32,6 +31,7 @@
 			<hr>
 		</div>
 
+		<div class="sales_history"><br></div>
 		<?php
 
 			$servername = "localhost";
@@ -42,11 +42,8 @@
 			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
 			$active_ID=$_GET['active_ID'];
-			$owner_temp = mysqli_query($con, "SELECT FullName FROM user WHERE active_ID='$active_ID'");
-			$row = $owner_temp->fetch_assoc();
-			$item_owner = $row['FullName'];
 
-			$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE (isDeleted IS NULL or isDeleted=0) and item_owner='$item_owner'";
+			$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE (isDeleted IS NULL or isDeleted=0) and item_owner='$active_ID'";
 			
 			$result = mysqli_query($con, $sql);
 

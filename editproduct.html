@@ -5,7 +5,7 @@
 		<style type="text/css">
 		</style>
 		<link rel="stylesheet" type="text/css" href="SaleProjectStyle.css">
-		<script type="text/javascript" src="editproduct.js"></script>
+		<script type="text/javascript" src="cekformproduct.js"></script>
 	</head>
 	<body>
 		<div class="title">
@@ -49,7 +49,7 @@
 		?>
 
 		<div class="product">
-			<form action="editproduct.php?item_ID=<?php echo $item_ID;?>&active_ID=<?php echo $activeid; ?>" method="post" enctype="musltipart/form-data">
+			<form name = "addproduct" action="editproduct.php?item_ID=<?php echo $item_ID;?>&active_ID=<?php echo $activeid; ?>" method="post" onsubmit="return validasiedit();" enctype="musltipart/form-data">
 				<small>Name</small> <br>
 				<input type="text" name="item_name" value="<?php echo $row['item_name']; ?>">
 				<br>
@@ -59,7 +59,7 @@
 				<br>
 				<br>
 				<small>Price (IDR)</small> <br>
-				<input type="text" name="item_price" value="<?php echo $row['item_price']; ?>">
+				<input type="text" name="item_price" id="item_price" value="<?php echo $row['item_price']; ?>">
 				<br>
 				<br>
 				<!-- Photo <br>

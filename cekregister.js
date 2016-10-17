@@ -37,7 +37,6 @@ function validasiPassword() {
 function validasi() {
     var pass = validasiPassword(), form = validasiFormKosong(), email = validasiEmail();
     if ((pass==true) && (form==true) && (email==true)) {
-        console.log("hehe9");
         return true;
     } else return false;
 }

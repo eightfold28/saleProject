@@ -14,7 +14,7 @@
 	$username = $_POST["EmailOrUsername"];
 	$password = $_POST["Password"];
 	
-	$sql = "SELECT active_ID FROM user WHERE Username = '$username' OR Email = '$username' and Password = '$password'";
+	$sql = "SELECT active_ID FROM user WHERE (Username = '$username' OR Email = '$username') and Password = '$password'";
 	$result = mysqli_query($con, $sql);
 	$count = mysqli_num_rows($result);
 	while ($row = mysqli_fetch_array($result)) {

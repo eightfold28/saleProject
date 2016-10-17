@@ -139,6 +139,7 @@ a {
 	font-size: 20px;
 	color: #4887E4;
 }
+
 .clearfix {
 	clear: both;
 }
@@ -199,6 +200,11 @@ a {
 }
 
 /* Login-register style */
+.errorregister {
+	margin-left: 15%;
+	line-height: 200%;
+}
+
 .loginregister {
 	margin-left: 15%;
 	line-height: 200%;

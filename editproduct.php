@@ -3,7 +3,7 @@
 	$servername = "localhost";
 	$dbusername = "root";
 	$dbpassword = "";
-	$dbname = "wbd";
+	$dbname = "tubeswbd1";
 
 	$active_ID = $_GET['active_ID'];
 

@@ -34,7 +34,7 @@
 		</div>
 
 		<div class="product">
-			<form name="addproduct" action="addproduct.php?active_ID=<?php echo $activeid; ?>" method="post" onsubmit="return validasiFormKosong()" enctype="multipart/form-data">
+			<form name="addproduct" action="addproduct.php?active_ID=<?php echo $activeid; ?>" method="post" onsubmit="return validasi();" enctype="multipart/form-data">
 				<small>Name</small> <br>
 				<input type="text" name="item_name">
 				<br>
@@ -44,7 +44,7 @@
 				<br>
 				<br>
 				<small>Price (IDR)</small> <br>
-				<input type="text" name="item_price">
+				<input type="text" name="item_price" id="item_price">
 				<br>
 				<br>
 				<small>Photo</small> <br>
@@ -56,6 +56,5 @@
 				<input type="submit" value="ADD" style="margin-right: 30px"> <br>
 			</form>
 		</div>
-
 	</body>
 </html>

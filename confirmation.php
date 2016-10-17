@@ -56,6 +56,7 @@
 		$item_sql = "SELECT * FROM item WHERE isDeleted = 0 AND item_ID = '$item_id'";
 		$item_result = $conn->query($item_sql);
 		$item_detail = $item_result->fetch_assoc();
+		$item_price = $item_detail['item_price'];
 
 		//Take user detail
 		$user_sql = "SELECT * FROM user WHERE active_ID = '$user'";
@@ -63,21 +64,20 @@
 		$user_detail = $user_result->fetch_assoc();
 	?>
 
-	<form action="buy_success.php" method="post">
+	<form action="buysuccess.php?active_ID=<?php echo $user; ?>" method="post" name="confirmation">
 	<div class="confirmation_purchase">
 		Product : <?php
 			echo $item_detail['item_name'];
 		?> <br>
-		Price 	: <?php
-			echo $item_detail['item_price'];
+		Price 	: IDR <?php
+			echo $item_price;
 		?> <br>
-		Quantity : <input type="text" name="qty" placeholder="1" style="width: 30px;"> pcs <br>
-		Total Price : <br>
+		Quantity : <input type="text" name = "qty" id="qty" value="1" style="width: 30px;" onkeyup="calculate(<?php echo $item_price; ?>);"> pcs <br>
+		Total Price : IDR  <input type="text" id="total" value= <?php echo $item_price; ?> style="width:100" readonly/><br>
 		Delivery to : <br>
 		<br>
 	</div>
 
-	
 		<div class="confirmation_purchase_form">
 			<small>Consignee</small> <br>
 			<input type="text" name="consignee" value= <?php echo '"' . $user_detail['FullName'] . '"'?> > <br> <br>
@@ -88,9 +88,9 @@
 			<small>Phone Number</small> <br>
 			<input type="text" name="phone_number" value= <?php echo '"' . $user_detail['PhoneNumber'] . '"'?> > <br> <br>
 			<small>12 Digits Credit Card Number</small> <br>
-			<input type="text" name="credit_card"> <br> <br>
+			<input type="text" id="credit_card" name="credit_card" value=""> <br> <br>
 			<small>3 Digits Card Verification Value</small> <br>
-			<input type="text" name="card_verification"> <br> <br> <br>
+			<input type="text" id="card_verification" name="card_verification" value=""> <br> <br> <br>
 
 			<input type="text" name="itemid" hidden="" value= <?php
 			echo $item_detail['item_ID'];?> >
@@ -98,10 +98,10 @@
 			echo $user?> >
 
 			<input type="submit" name="cancel" value="CANCEL" onclick="location.href=' <?php echo 'catalog.php?active_ID=' . $activeid?> '">
-			<input type="submit" name="confirm_purchse" value="CONFIRM" style="margin-right: 30px;"> <br> <br>
+			<input type="submit" name="confirm_purchse" value="CONFIRM" onclick= "return validasi()" style="margin-right: 30px;"> <br> <br>
 		</div>
 	</form>
 
 </body>
-
+<script type="text/javascript" src="confirmation.js"></script>
 </html>

@@ -21,27 +21,28 @@
 <?php
     error_reporting(0);
     if($_GET["error"] == 2) {
-        echo "<h3>Username yang anda masukkan sudah ada. Coba yang lain lagi.</h3>";
+        echo '<div class= "errorregister">' .
+        "<h3>Username atau Email yang anda masukkan sudah ada. Coba yang lain lagi.</h3>" . "</div>";
     }
 ?>
     <div class="loginregister">
         <form name= "registerForm" action= "register.php" onsubmit= "return validasi()" method= "post">
             <small> Full Name </small> <br>
-            <input type= "text" name= "fullname" value="" size= "60"> <br> 
+            <input type= "text" name= "fullname" size= "60"> <br> 
             <small> Username </small> <br>
-            <input type= "text" name= "username" value="" size= "60"> <br> 
+            <input type= "text" name= "username" size= "60"> <br> 
             <small> Email </small> <br>
-            <input type= "text" name= "email" value="" size= "60" onblur= "return validasiEmail()"> <br> 
+            <input type= "text" name= "email" size= "60" onblur= "return validasiEmail()"> <br> 
             <small> Password </small> <br>
-            <input type ="password" name= "password" value="" size= "60" > <br>
+            <input type ="password" name= "password" size= "60" > <br>
             <small> Confirm Password </small> <br>
-            <input type= "password" name= "confirmpassword" value="" size= "60" onblur= "return validasiPassword()"> <br> 
+            <input type= "password" name= "confirmpassword" size= "60" onblur= "return validasiPassword()"> <br> 
             <small> Full Address </small> <br>
-            <textarea name="fulladdress" cols= "105" rows="2"></textarea><br> 
+            <textarea name="fulladdress" cols= "123" rows="2"></textarea><br> 
             <small> Postal Code </small> <br>
-            <input type= "text" name= "postalcode" value="" size= "60"> <br> 
+            <input type= "text" name= "postalcode" size= "60"> <br> 
             <small> Phone Number </small> <br>
-            <input type= "text" name= "phonenumber" value="" size= "60"> <br> 
+            <input type= "text" name= "phonenumber" size= "60"> <br> 
             <br>
             <input type="submit" value="REGISTER" style="float: right;">
         </form>
