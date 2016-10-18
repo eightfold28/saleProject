@@ -85,12 +85,12 @@
 					$owner = $owner_temp->fetch_assoc();
 					$item_owner = $owner['Username'];
 					echo '<br> <div class="owner">' . $item_owner . "</div>";
-					echo "added this on " . $row['dateadd'] . ", on " .$row['time_added'];
+					echo "added this on " . $row['dateadd'] . ", at " .$row['time_added'];
 					echo "<hr> <br>";
 
 		
 					//ITEM IMAGE
-					echo '<img src ="data:image/jpeg;base64,' . base64_encode($row['item_image']) . '"/> <br>';
+					echo '<div class="product_image"><img src ="data:image/jpeg;base64,' . base64_encode($row['item_image']) . '"/> </div>';
 
 
 					//ITEM NAME
@@ -115,7 +115,7 @@
 						echo '0 purchases';
 					}
 					else {
-						echo $purchase['purchase_count'] . ' purchases';
+						echo $row['item_purchases'] . ' purchases';
 					}
 					echo '</div>';
 
@@ -143,7 +143,7 @@
 					//CLEARFIX FLOAT
 					echo '<div class="clearfix"></div>';
 
-					echo "<br><hr><br><br>";
+					echo "<br><br>";
 				}
 			}
 			else {

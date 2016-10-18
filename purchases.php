@@ -34,7 +34,7 @@
 		<hr>
 	</div>
 
-	<!-- <div class="catalog_item"> -->
+	<div class="catalog_item">
 		<?php
 	        $servername = "localhost";
 	        $dbusername = "root";
@@ -86,8 +86,6 @@
 	                 </p>
 	                 <br><br><br><br>
 	        <?php }?>
-	<!-- </div> -->
-
+	</div>
 </body>
-
 </html>

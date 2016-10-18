@@ -28,17 +28,6 @@ function validasiDescLength() {
 	} else return false;
 }
 
-// function validasiPrice() {
-// 	var price = document.forms["addproduct"]["item_price"].value;
-// 	var x = parseFloat(price);
-// 	if (price) {
-// 		if (price % 1 != 0) {
-// 			alert("Harga harus dalam integer.");
-// 			return false;
-// 		} else return true;
-// 	} else return false;
-// }
-
 function validasiPrice(id) {
 	if (document.getElementById(id).value) {
 		if (/^\d+$/.test(document.getElementById(id).value)) {
@@ -71,3 +60,4 @@ function validasiedit() {
     	}else return false;
     } else return false;
 }
+

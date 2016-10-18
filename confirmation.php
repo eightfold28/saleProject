@@ -14,9 +14,7 @@
 		Sale<span style="color: #4887E4">Project</span> <br>
 	</div>
 
-	<?php
-		include 'userlogin.php';
-	?>
+	<?php include 'userlogin.php';	?>
 
 	<div class="navigation_bar">
 		<ul>
